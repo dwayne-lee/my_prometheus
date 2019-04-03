@@ -16,4 +16,4 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets:
-        - 10.4.88.179:9323 
+        - localhost:9323 

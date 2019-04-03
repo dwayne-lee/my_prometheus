@@ -1,0 +1,6 @@
+*.retry
+data/grafana/grafana.db
+data/grafana/plugins/*
+data/grafana/png/*
+data/prometheus/data/*
+data/prometheus/.gitignore

@@ -1,0 +1,19 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: prometheus
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+          - cadvisor:8080
+          - prometheus:9090
+          - node-exporter:9100
+          - pushgateway:9091
+
+  - job_name: docker
+    scrape_interval: 5s
+    static_configs:
+      - targets:
+        - 10.4.88.179:9323 

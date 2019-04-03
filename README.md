@@ -5,7 +5,7 @@
 ### /etc/docker/daemon.json must contain the following:
 ```
 {
-  "metrics-addr" : "127.0.0.1:9323",
+  "metrics-addr" : "0.0.0.0:9323",
   "experimental" : true
 }
 ```

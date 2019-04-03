@@ -3,12 +3,12 @@
 
 ### Requirements:
 ### /etc/docker/daemon.json must contain the following:
-"""
+```
 {
   "metrics-addr" : "127.0.0.1:9323",
   "experimental" : true
 }
-"""
+```
 
 ### Deploy to single Docker node (use docker-compose.yml)
 Run `docker-compose up -d`

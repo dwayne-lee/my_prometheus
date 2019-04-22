@@ -11,16 +11,16 @@
 ```
 
 ### Create a secret to store the Grafana login password (change it after initial login)
-Run docker secret create grafana_admin_pass grafana_admin_pass.txt
+Run `docker secret create grafana_admin_pass grafana_admin_pass.txt`
 
 ### Create a config for the prometheus.yml file
-Run docker config create prometheus.yml prometheus.yml
+Run `docker config create prometheus.yml prometheus.yml`
 
 ### Deploy to Docker Swarm (use docker-compose.yml)
 Run `docker-compose up -d`
 
 ### Fix perms on the Prometheus volume
-Run chown nobody:nobody -R /var/lib/docker/volumes/prometheus_prometheus-data
+Run `chown nobody:nobody -R /var/lib/docker/volumes/prometheus_prometheus-data`
 
 ### Verify
 Navigate to http://<manager-ip>:9090/targets and make sure everything is "UP"

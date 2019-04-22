@@ -23,10 +23,10 @@ Run `docker-compose up -d`
 Run `chown nobody:nobody -R /var/lib/docker/volumes/prometheus_prometheus-data`
 
 ### Verify
-Navigate to http://<manager-ip>:9090/targets and make sure everything is "UP"
+Navigate to http://\<manager-ip\>:9090/targets and make sure everything is "UP"
 
 ### Configure
-1. Navigate to http://<manager-ip>:3000 and login
+1. Navigate to http://\<manager-ip\>:3000 and login
 2. Add a "Prometheus" data source
 3. Import the dashboard from docker_and_system.json file
 4. Setup alerts as needed

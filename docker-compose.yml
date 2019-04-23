@@ -25,7 +25,6 @@ secrets:
 services:
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus
     networks:
       - prometheus_net
     ports:
@@ -55,7 +54,6 @@ services:
 
   cadvisor:
     image:  google/cadvisor:latest
-    container_name: cadvisor
     networks:
       - prometheus_net
     ports:
@@ -73,7 +71,6 @@ services:
 
   pushgateway:
     image: prom/pushgateway:latest
-    container_name: pushgateway
     networks:
       - prometheus_net
     ports:
@@ -87,7 +84,6 @@ services:
 
   node-exporter:
     image: prom/node-exporter:latest
-    container_name: node-exporter
     networks:
       - prometheus_net
     ports:
@@ -108,7 +104,6 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
     networks:
       - prometheus_net
     ports:

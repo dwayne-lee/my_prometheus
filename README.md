@@ -11,7 +11,7 @@
 ```
 
 ### Create a secret to store the Grafana login password (change it after initial login)
-Run `docker secret create grafana_admin_pass grafana_admin_pass.txt`
+Run `docker secret create grafana_admin_pass grafana_admin_pass.txt --label com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod`
 
 ### Create a config for the prometheus.yml file
 Run `docker config create prometheus.yml prometheus.yml`

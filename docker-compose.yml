@@ -60,7 +60,6 @@ services:
     labels:
       - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
     volumes:
-      - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker:/var/lib/docker:ro
@@ -68,9 +67,6 @@ services:
       mode: global
       labels:
         - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
-      placement:
-        constraints:
-          - node.platform.os == linux
     restart: unless-stopped
 
   pushgateway:
@@ -86,9 +82,6 @@ services:
       mode: global
       labels:
         - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
-      placement:
-        constraints:
-          - node.platform.os == linux
     restart: unless-stopped
 
   node-exporter:
@@ -102,21 +95,15 @@ services:
       - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
     volumes:
       - /sys:/host/sys:ro
-      - /:/rootfs:ro
       - /proc:/host/proc:ro
     command:
       - '--path.sysfs=/host/sys'
       - '--path.procfs=/host/proc'
-      - '--collector.textfile.directory=/etc/node-exporter/'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)'
-      - '--no-collector.ipvs'
     deploy:
       mode: global
       labels:
         - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
-      placement:
-        constraints:
-          - node.platform.os == linux
     restart: unless-stopped
 
   grafana:

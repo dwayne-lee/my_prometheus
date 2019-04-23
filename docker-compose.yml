@@ -5,7 +5,7 @@ networks:
     driver: overlay
     driver_opts:
       encrypted: "true"
-    attachable: "true"
+    attachable: true
     labels:
       - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
 
@@ -16,6 +16,10 @@ volumes:
 
 configs:
   prometheus.yml:
+    external: true
+
+secrets:
+  grafana_admin_pass:
     external: true
 
 services:
@@ -48,7 +52,6 @@ services:
     depends_on:
       - cadvisor
       - node-exporter
-    restart: unless-stopped
 
   cadvisor:
     image:  google/cadvisor:latest
@@ -67,7 +70,6 @@ services:
       mode: global
       labels:
         - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
-    restart: unless-stopped
 
   pushgateway:
     image: prom/pushgateway:latest
@@ -82,7 +84,6 @@ services:
       mode: global
       labels:
         - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
-    restart: unless-stopped
 
   node-exporter:
     image: prom/node-exporter:latest
@@ -104,7 +105,6 @@ services:
       mode: global
       labels:
         - "com.docker.ucp.access.label=/Shared/DevTeams/Yoda/Prod"
-    restart: unless-stopped
 
   grafana:
     image: grafana/grafana:latest
@@ -119,7 +119,7 @@ services:
       - grafana-data:/var/lib/grafana
       - grafana-plugins:/var/lib/grafana/plugins
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD: /run/secrets/grafana_admin_pass
+      - GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secrets/grafana_admin_pass
     deploy:
       mode: replicated
       replicas: 1

@@ -17,10 +17,11 @@ Run `docker secret create grafana_admin_pass grafana_admin_pass.txt --label com.
 Run `docker config create prometheus.yml prometheus.yml`
 
 ### Deploy to Docker Swarm (use docker-compose.yml)
-Run `docker-compose up -d`
+Run `docker stack deploy --compose-file docker-compose.yml prometheus`
 
 ### Fix perms on the Prometheus volume
 Run `chown nobody:nobody -R /var/lib/docker/volumes/prometheus_prometheus-data`
+Run `chmod 777 -R /var/lib/docker/volumes/prometheus_prometheus-data`
 
 ### Verify
 Navigate to http://\<manager-ip\>:9090/targets and make sure everything is "UP"
@@ -32,7 +33,7 @@ Navigate to http://\<manager-ip\>:9090/targets and make sure everything is "UP"
 4. Setup alerts as needed
 
 ### Teardown
-Run `docker-compose down`
+Run `docker stack rm prometheus`
 
 
 Please contact Dwayne Lee (dwaynelee@quickenloans.com) with any issues, suggestions.  Enjoy!
